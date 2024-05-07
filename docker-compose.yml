@@ -11,3 +11,15 @@ services:
       - mongodb:/data/db
     networks:
       - my_network
+
+  backend:
+    build: ./backend
+    ports:
+      - 5000:5000
+    environment:
+      MONGODB_URI: mongodb://mongo_db:27017
+    depends_on:
+      - mongo_db
+    networks:
+      - my_network
+  
