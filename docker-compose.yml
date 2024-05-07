@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+
+  mongo_db:
+    image: mongo:latest
+    restart: always
+    ports: 
+      - 27017:27017
+    volumes: 
+      - mongodb:/data/db
+    networks:
+      - my_network
