@@ -22,4 +22,11 @@ services:
       - mongo_db
     networks:
       - my_network
+
+  frontend:
+    build: ./client
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
   
