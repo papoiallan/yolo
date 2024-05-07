@@ -24,8 +24,10 @@ services:
       - my_network
 
   frontend:
-    image: papoiallan/yolo_frontend
+    build: papoiallan/yolo_frontend
     restart: always
+    environment: 
+      - HOST=0.0.0.0
     ports:
       - 3000:3000
     networks:
