@@ -30,3 +30,5 @@ services:
     networks:
       - my_network
   
+volumes:
+  mongodb:
