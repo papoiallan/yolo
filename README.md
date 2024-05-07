@@ -4,12 +4,19 @@ cd client
 touch Dockerfile
 # Insert and save into Dockerfile the following commands
 FROM node:alpine3.18
+
 WORKDIR /app
+
 COPY package*.json .
+
 RUN npm install
+
 COPY . .
+
 ENV DEBUG=*
+
 EXPOSE 3000
+
 CMD ["npm", "start"]
 # Build the image and tag it and then push the image to your dockerhub
 # Navigate into the backend
@@ -17,11 +24,17 @@ cd ../backend
 # Create another Dockerfile
 # Insert and save into Dockerfile the following commands
 FROM node:alpine3.18
+
 WORKDIR /app
+
 COPY package*.json .
+
 RUN npm install
+
 COPY . .
+
 EXPOSE 5000
+
 CMD ["npm", "start"]
 # Build the image and tag it and then push the image to your dockerhub
 # Navigate into the root folder
