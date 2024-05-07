@@ -1,23 +1,30 @@
-# Requirements
-Make sure that you have the following installed:
-- [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
-- npm 
-- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and start the mongodb service with `sudo service mongod start`
-
-## Navigate to the Client Folder 
- `cd client`
-
-## Run the folllowing command to install the dependencies 
- `npm install`
-
-## Run the folllowing to start the app
- `npm start`
-
-## Open a new terminal and run the same commands in the backend folder
- `cd ../backend`
-
- `npm install`
-
- `npm start`
-
- ### Go ahead a nd add a product (note that the price field only takes a numeric input)
+# Navigate into the client directory
+cd client
+# Create a Dockerfile 
+touch Dockerfile
+# Insert and save into Dockerfile the following commands
+FROM node:alpine3.18
+WORKDIR /app
+COPY package*.json .
+RUN npm install
+COPY . .
+ENV DEBUG=*
+EXPOSE 3000
+CMD ["npm", "start"]
+# Build the image and tag it and then push the image to your dockerhub
+# Navigate into the backend
+cd ../backend
+# Create another Dockerfile
+# Insert and save into Dockerfile the following commands
+FROM node:alpine3.18
+WORKDIR /app
+COPY package*.json .
+RUN npm install
+COPY . .
+EXPOSE 5000
+CMD ["npm", "start"]
+# Build the image and tag it and then push the image to your dockerhub
+# Navigate into the root folder
+cd ..
+# Create a docker-compose file with the services for backend, frontend and mongodb
+# Ensure that you create the necessary volumes and also networks to enable the containers to communicate
