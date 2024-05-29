@@ -2,12 +2,12 @@
   become: true
   vars:
     user: vagrant
-  tasks: 
+  tasks:
     - name: Testing connectivity
-      ping:
+      ping: null
     - name: Update server
       apt:
-        update_cache: yes
+        update_cache: 'yes'
     - name: Install docker dependencies
       apt:
         pkg:
@@ -22,11 +22,11 @@
         update_cache: true
     - name: GPG Keys
       apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
+        url: 'https://download.docker.com/linux/ubuntu/gpg'
         state: present
     - name: Docker repository
       apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu jammy stable
+        repo: 'deb https://download.docker.com/linux/ubuntu jammy stable'
         state: present
     - name: Docker installation
       apt:
@@ -42,19 +42,18 @@
         state: present
         update_cache: true
     - name: clone yolo repo
-      git: 
-        repo: https://github.com/papoiallan/yolo.git
-        dest: "/home/{{user}}"
+      git:
+        repo: 'https://github.com/papoiallan/yolo.git'
+        dest: '/home/{{user}}'
         version: master
     - name: install docker-compose
-      ansible.builtin.pip: 
-        name: 
+      ansible.builtin.pip:
+        name:
           - docker<7
           - docker-compose
     - name: deploy containers
       community.docker.docker_compose_v2:
         project_src: /home/vagrant/yolo/
-        files: 
-          - "/home/vagrant/yolo/docker-compose.yml"
+        files:
+          - /home/vagrant/yolo/docker-compose.yml
         state: present
-      
