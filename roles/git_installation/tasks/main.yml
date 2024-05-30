@@ -1,0 +1,12 @@
+---
+# tasks file for git_installation
+- name: git installation
+  apt:
+    name: git
+    state: present
+    update_cache: true
+- name: clone yolo repo
+  git:
+    repo: 'https://github.com/papoiallan/yolo.git'
+    dest: '/home/{{user}}'
+    version: master

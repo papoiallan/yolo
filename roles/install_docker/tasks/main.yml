@@ -1,0 +1,27 @@
+---
+# tasks file for install_docker
+- name: Install docker dependencies
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: true
+- name: GPG Keys
+  apt_key:
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    state: present
+- name: Docker repository
+  apt_repository:
+    repo: 'deb https://download.docker.com/linux/ubuntu jammy stable'
+    state: present
+- name: Docker installation
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true

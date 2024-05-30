@@ -1,0 +1,5 @@
+---
+# tasks file for python_modules
+- name: Install python modules
+  pip:
+    name: docker
