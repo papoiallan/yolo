@@ -13,7 +13,7 @@ services:
       - my_network
 
   backend:
-    image: papoiallan/yolo_backend
+    image: papoiallan/yolo_backend:latest
     ports:
       - 5000:5000
     environment:
@@ -24,7 +24,7 @@ services:
       - my_network
 
   frontend:
-    build: papoiallan/yolo_frontend
+    image: papoiallan/yolo_frontend:latest
     restart: always
     environment: 
       - HOST=0.0.0.0

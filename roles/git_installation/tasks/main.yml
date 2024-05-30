@@ -8,5 +8,5 @@
 - name: clone yolo repo
   git:
     repo: 'https://github.com/papoiallan/yolo.git'
-    dest: '/home/{{user}}'
+    dest: '/home/{{user}}/yolo/'
     version: master
