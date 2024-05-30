@@ -24,7 +24,9 @@ services:
       - my_network
 
   frontend:
-    image: papoiallan/yolo_frontend:latest
+    build: 
+      context: .
+      Dockerfile: /client/Dockerfile
     restart: always
     environment: 
       - HOST=0.0.0.0
